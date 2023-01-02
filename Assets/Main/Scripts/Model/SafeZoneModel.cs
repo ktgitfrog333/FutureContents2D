@@ -10,7 +10,7 @@ namespace Main.Model
     /// モデル
     /// セーフゾーン
     /// </summary>
-    [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(BoxCollider2D))]
     public class SafeZoneModel : MonoBehaviour
     {
         /// <summary>トリガーから出る</summary>

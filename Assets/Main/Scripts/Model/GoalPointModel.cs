@@ -45,8 +45,17 @@ namespace Main.Model
             {
                 if (_transform == null)
                     _transform = transform;
-                _transform.position += Physics.gravity * Time.deltaTime;
+                //_transform.position += Physics.gravity * Time.deltaTime;
             }
+
+            var result = Physics2D.CapsuleCast(footerPoint, _transform.localScale * radius, CapsuleDirection2D.Vertical, 90, direction, maxDistance, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR));
+            Debug.Log($"2DCapsuleCast:[{result.transform.name}]");
+            //if (result.transform != null)
+            //{
+            //    if (_transform == null)
+            //        _transform = transform;
+            //    _transform.position += Physics.gravity * Time.deltaTime;
+            //}
         }
     }
 }

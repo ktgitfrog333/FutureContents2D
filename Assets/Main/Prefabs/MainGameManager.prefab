@@ -95,8 +95,7 @@ MonoBehaviour:
   level: {fileID: 0}
   levelPrefabs:
   - {fileID: 0}
-  - {fileID: 6549890182344381133, guid: efb49213c3cee15408fabb37e645ed21, type: 3}
-  - {fileID: 6549890182344381133, guid: 8bc1aaf2866c71145939ace42334ee52, type: 3}
+  - {fileID: 360757283206218720, guid: d8007b7d976ee9f48b210463e0af80f2, type: 3}
 --- !u!1 &1827416082
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,6 +147,7 @@ MonoBehaviour:
   leftMotor: 0.8
   rightMotor: 0
   delayTime: 0.3
+  isVibrationEnabled: 0
 --- !u!114 &1827416085
 MonoBehaviour:
   m_ObjectHideFlags: 0

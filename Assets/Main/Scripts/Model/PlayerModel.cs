@@ -13,7 +13,7 @@ namespace Main.Model
     /// モデル
     /// プレイヤー
     /// </summary>
-    [RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(Rigidbody2D))]
     public class PlayerModel : LevelPhysicsSerializerCapsule
     {
         /// <summary>移動速度</summary>
@@ -47,7 +47,7 @@ namespace Main.Model
         private void Start()
         {
             // Rigidbody
-            var rigidbody = GetComponent<Rigidbody>();
+            var rigidbody = GetComponent<Rigidbody2D>();
             // 移動制御のベロシティ
             var moveVelocity = new Vector3();
             // 位置・スケールのキャッシュ
@@ -70,7 +70,7 @@ namespace Main.Model
                             isJumped = true;
                         }
                         // 空中のみ重力が有効（Y軸引力にAddForceのX軸制御が負けるため）
-                        rigidbody.useGravity = !Physics.CheckCapsule(footerPoint, headerPoint, radius, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR));
+                        //rigidbody.useGravity = !Physics.CheckCapsule(footerPoint, headerPoint, radius, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR));
                     }
                 });
             // 移動制御
@@ -83,7 +83,7 @@ namespace Main.Model
                         MainGameManager.Instance.AudioOwner.PlaySFX(ClipToPlay.se_player_jump);
                         isJumped = false;
                         // ジャンプ挙動
-                        rigidbody.AddForce(moveVelocity, ForceMode.Impulse);
+                        //rigidbody.AddForce(moveVelocity, ForceMode.Impulse);
                     }
                     else
                     {

@@ -8,7 +8,7 @@ namespace Main.Model
     /// レベル内のレイ判定の共通設定
     /// カプセルキャスト
     /// </summary>
-    [RequireComponent(typeof(CapsuleCollider))]
+    [RequireComponent(typeof(CapsuleCollider2D))]
     public class LevelPhysicsSerializerCapsule : MonoBehaviour
     {
         /// <summary>ポイント１</summary>
