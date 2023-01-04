@@ -115,11 +115,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee763b05f34e11e4d82aa72f02c4eacf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  footerPoint: {x: 8.5, y: 1.75, z: 0}
-  headerPoint: {x: 8.5, y: 2.25, z: 0}
-  radius: 0.25
-  direction: {x: 0, y: 0, z: 0}
-  maxDistance: 0
+  origin: {x: 8.5, y: 2}
+  size: {x: 0.5, y: 1}
+  capsuleDirection: 0
+  angle: 0
+  direction: {x: 0, y: 0}
+  distance: 0
   previewColor: {r: 0, g: 1, b: 0, a: 1}
 --- !u!114 &7737548869215380489
 MonoBehaviour:

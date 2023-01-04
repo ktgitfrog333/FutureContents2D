@@ -44,10 +44,17 @@ namespace Main.Model
             }
         }
 
+        protected override void Reset()
+        {
+            base.Reset();
+            distance = 0f;
+        }
+
         private void Start()
         {
             // Rigidbody
             var rigidbody = GetComponent<Rigidbody2D>();
+            var rigidbodyGravityScale = rigidbody.gravityScale;
             // 移動制御のベロシティ
             var moveVelocity = new Vector3();
             // 位置・スケールのキャッシュ
@@ -58,19 +65,19 @@ namespace Main.Model
             this.UpdateAsObservable()
                 .Subscribe(_ =>
                 {
+                    origin = gameObject.transform.position;
                     if (!_inputBan)
                     {
                         moveVelocity = new Vector3(MainGameManager.Instance.InputSystemsOwner.InputPlayer.Moved.x, moveVelocity.y, moveVelocity.z) * moveSpeed * (1f + Time.deltaTime);
-                        footerPoint = gameObject.transform.position - Vector3.up * 0.25f;
-                        headerPoint = gameObject.transform.position + Vector3.up * 0.25f;
+                        var rayCastHit = Physics2D.CapsuleCast(origin, size, capsuleDirection, angle, direction, distance, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR));
                         if (!isJumped &&
                             MainGameManager.Instance.InputSystemsOwner.InputPlayer.Jumped &&
-                            Physics.CheckCapsule(footerPoint, headerPoint, radius, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR)))
+                            rayCastHit.transform != null)
                         {
                             isJumped = true;
                         }
                         // 空中のみ重力が有効（Y軸引力にAddForceのX軸制御が負けるため）
-                        //rigidbody.useGravity = !Physics.CheckCapsule(footerPoint, headerPoint, radius, LayerMask.GetMask(ConstLayerNames.LAYER_NAME_FLOOR));
+                        rigidbody.gravityScale = rayCastHit.transform == null ? rigidbodyGravityScale : 0f;
                     }
                 });
             // 移動制御
@@ -83,7 +90,7 @@ namespace Main.Model
                         MainGameManager.Instance.AudioOwner.PlaySFX(ClipToPlay.se_player_jump);
                         isJumped = false;
                         // ジャンプ挙動
-                        //rigidbody.AddForce(moveVelocity, ForceMode.Impulse);
+                        rigidbody.AddForce(moveVelocity, ForceMode2D.Impulse);
                     }
                     else
                     {

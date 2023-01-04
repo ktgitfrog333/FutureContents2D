@@ -18,9 +18,9 @@ namespace Main.Model
         /// <summary>トリガーから出る</summary>
         public IReactiveProperty<bool> IsTriggerExited => _isTriggerExited;
 
-        private void OnTriggerExit(Collider other)
+        private void OnTriggerExit2D(Collider2D collision)
         {
-            if (other.CompareTag(ConstTagNames.TAG_NAME_PLAYER))
+            if (collision.CompareTag(ConstTagNames.TAG_NAME_PLAYER))
             {
                 _isTriggerExited.Value = true;
             }

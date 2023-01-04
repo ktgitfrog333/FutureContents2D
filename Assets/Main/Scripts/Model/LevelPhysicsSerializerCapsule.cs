@@ -11,35 +11,39 @@ namespace Main.Model
     [RequireComponent(typeof(CapsuleCollider2D))]
     public class LevelPhysicsSerializerCapsule : MonoBehaviour
     {
-        /// <summary>ポイント１</summary>
-        [SerializeField] protected Vector3 footerPoint;
-        /// <summary>ポイント２</summary>
-        [SerializeField] protected Vector3 headerPoint;
-        /// <summary>半径</summary>
-        [SerializeField] protected float radius;
+        /// <summary>オリジン</summary>
+        [SerializeField] protected Vector2 origin;
+        /// <summary>サイズ</summary>
+        [SerializeField] protected Vector2 size;
+        /// <summary>カプセル形状の向き</summary>
+        [SerializeField] protected CapsuleDirection2D capsuleDirection;
         /// <summary>角度</summary>
-        [SerializeField] protected Vector3 direction;
-        /// <summary>距離</summary>
-        [SerializeField] protected float maxDistance;
+        [SerializeField] protected float angle;
+        /// <summary>レイの向き</summary>
+        [SerializeField] protected Vector2 direction;
+        /// <summary>レイの距離</summary>
+        [SerializeField] protected float distance;
         /// <summary>プレビュー表示（選択時）の色</summary>
         [SerializeField] protected Color previewColor;
 
         protected virtual void Reset()
         {
             // 規定値
-            footerPoint = gameObject.transform.position - Vector3.up * 0.5f;
-            headerPoint = gameObject.transform.position + Vector3.up * 0.5f;
-            radius = .5f;
-            direction = Vector3.up;
-            maxDistance = 6.0f;
             previewColor = Color.green;
+
+            origin = gameObject.transform.position;
+            size = gameObject.transform.lossyScale * GetComponent<CapsuleCollider2D>().size;
+            capsuleDirection = CapsuleDirection2D.Vertical;
+            angle = 0f;
+            direction = Vector3.zero;
+            distance = 6.0f;
         }
 
         private void OnDrawGizmosSelected()
         {
             Gizmos.color = previewColor;
-            Gizmos.DrawWireSphere(footerPoint, radius);
-            Gizmos.DrawWireSphere(direction * maxDistance + headerPoint, radius);
+            Gizmos.DrawWireSphere(capsuleDirection.Equals(CapsuleDirection2D.Vertical) ? origin - new Vector2(0f, size.y / 4) : origin - new Vector2(size.x / 4, 0f), size.x / 2);
+            Gizmos.DrawWireSphere((capsuleDirection.Equals(CapsuleDirection2D.Vertical) ? origin + new Vector2(0f, size.y / 4) : origin + new Vector2(size.x / 4, 0f)) + direction * distance, size.x / 2);
         }
     }
 }
