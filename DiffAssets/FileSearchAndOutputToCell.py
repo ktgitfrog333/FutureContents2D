@@ -1,6 +1,6 @@
 import openpyxl
 from Common.FileSearchAndOutputToCellConstantsCmn import FileSearchAndOutputToCellConstantsCmn as ConstantsCmn
-from App import FileSearchAndOutputToCellApp
+from App.FileSearchAndOutputToCellApp import FileSearchAndOutputToCellApp
 
 # ワークブックを読み込む
 wb = openpyxl.load_workbook(ConstantsCmn.ORIGIN_BOOK)

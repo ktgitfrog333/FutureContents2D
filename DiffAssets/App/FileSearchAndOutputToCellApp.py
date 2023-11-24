@@ -23,7 +23,7 @@ class FileSearchAndOutputToCellApp:
         """
         origin_cell = self.worksheet[ConstantsCmn.ORIGIN_RANGE]
         rows, cols = origin_cell.row, origin_cell.column
-        for i in range(ConstantsCmn.CURRENT_SEARCH_RANGE_BEGIN_COL_IDX, ConstantsCmn.CURRENT_SEARCH_RANGE_END_COL_IDX):
+        for i in range(ConstantsCmn.CURRENT_SEARCH_RANGE_BEGIN_ROW_CNT, ConstantsCmn.CURRENT_SEARCH_RANGE_END_ROW_CNT):
             self.search_char_and_output(rows + i, cols)
 
     def search_char_and_output(self, rows, cols):
@@ -35,10 +35,10 @@ class FileSearchAndOutputToCellApp:
             rows (int): 検索する行の開始インデックス。
             cols (int): 検索する列の開始インデックス。
         """
-        for i in range(ConstantsCmn.CURRENT_SEARCH_RANGE_BEGIN_ROW_IDX, ConstantsCmn.CURRENT_SEARCH_RANGE_END_ROW_IDX):
+        for i in range(ConstantsCmn.CURRENT_SEARCH_RANGE_BEGIN_COL_CNT, ConstantsCmn.CURRENT_SEARCH_RANGE_END_COL_CNT):
             cell_value = self.worksheet.cell(row=rows, column=cols + i).value
             if self.is_found(cell_value):
-                self.cut_and_paste_of_variable(rows, cols + i, cols + ConstantsCmn.CURRENT_OUTPUT_IDX)
+                self.cut_and_paste_of_variable(rows, cols + i, cols + ConstantsCmn.CURRENT_SEARCH_RANGE_OUTPUT_COL_CNT)
                 break
 
     def cut_and_paste_of_variable(self, rows, cols, target_cols):
