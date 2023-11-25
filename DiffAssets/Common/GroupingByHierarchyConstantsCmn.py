@@ -8,7 +8,7 @@ class GroupingByHierarchyConstantsCmn(ConstantsCmn):
     """
     ORIGIN_RANGEを始点として何番目の行を始点とするか
     """
-    CURRENT_SEARCH_RANGE_END_ROW_IDX = 5 if ConstantsCmn.LEFT_OR_RIGHT else 10
+    CURRENT_SEARCH_RANGE_END_ROW_IDX = 6 if ConstantsCmn.LEFT_OR_RIGHT else 10
     """
     ORIGIN_RANGEを始点として何番目の行を終点とするか
     """

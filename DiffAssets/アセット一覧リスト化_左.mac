@@ -1,0 +1,13 @@
+﻿//キーボードマクロのファイル
+S_BookmarkPattern('C:\\FutureContents2D\\Assets\\', 32);	// 該当行マーク
+S_ReplaceAll('C:\\FutureContents2D\\Assets\\', '', 32);	// すべて置換
+S_ReDraw(0);	// 再描画
+S_BookmarkPattern('^.*\\.meta\\r\\n', 36);	// 該当行マーク
+S_ReplaceAll('^.*\\.meta\\r\\n', '', 36);	// すべて置換
+S_ReDraw(0);	// 再描画
+S_SelectAll(0);	// すべて選択
+S_SortAsc(0);	// 選択行の昇順ソート
+S_GoFileTop(0);	// ファイルの先頭に移動
+S_BookmarkPattern('\\\\', 36);	// 該当行マーク
+S_ReplaceAll('\\\\', '\\t', 36);	// すべて置換
+S_ReDraw(0);	// 再描画
