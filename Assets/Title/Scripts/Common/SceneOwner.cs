@@ -58,12 +58,12 @@ namespace Title.Common
             {
                 var tTResources = new TitleTemplateResourcesAccessory();
                 // ステージクリア済みデータのリセット
-                var mainSceneStagesStateDatas = tTResources.LoadResourcesCSV(ConstResorcesNames.MAIN_SCENE_STAGES_STATE_ALL);
+                var mainSceneStagesStateDatas = tTResources.LoadResourcesCSV(ConstResorcesNames.MAIN_SCENE_STAGES_STATE + ConstResorcesNames.ALL);
                 var mainSceneStagesStateConfigMaps = tTResources.GetMainSceneStagesState(mainSceneStagesStateDatas);
                 if (!tTResources.SaveDatasCSVOfMainSceneStagesState(ConstResorcesNames.MAIN_SCENE_STAGES_STATE, mainSceneStagesStateConfigMaps))
                     Debug.LogError("CSV保存呼び出しの失敗");
                 // システム設定キャッシュのリセット
-                var systemCommonCashDatas = tTResources.LoadResourcesCSV(ConstResorcesNames.SYSTEM_COMMON_CASH);
+                var systemCommonCashDatas = tTResources.LoadResourcesCSV(ConstResorcesNames.SYSTEM_COMMON_CASH + ConstResorcesNames.ALL);
                 var systemCommonCashConfigMaps = tTResources.GetSystemCommonCash(systemCommonCashDatas);
                 if (!tTResources.SaveDatasCSVOfSystemCommonCash(ConstResorcesNames.SYSTEM_COMMON_CASH, systemCommonCashConfigMaps))
                     Debug.LogError("CSV保存呼び出しの失敗");

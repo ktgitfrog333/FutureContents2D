@@ -9,7 +9,7 @@ namespace Main.Common
     /// <summary>
     /// シーンオーナー
     /// </summary>
-    public class SceneOwner : MonoBehaviour, IMainGameManager
+    public class SceneOwner : MonoBehaviour, IMainGameManager, ISceneOwner
     {
         /// <summary>次のシーン名</summary>
         [SerializeField] private string nextSceneName = "MainScene";
@@ -147,5 +147,9 @@ namespace Main.Common
         {
             SceneManager.LoadScene(backSceneName);
         }
+    }
+
+    public interface ISceneOwner
+    {
     }
 }

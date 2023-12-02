@@ -9,7 +9,7 @@ namespace Select.Common
     /// <summary>
     /// シーンオーナー
     /// </summary>
-    public class SceneOwner : MonoBehaviour, ISelectGameManager
+    public class SceneOwner : MonoBehaviour, ISelectGameManager, ISceneOwner
     {
         /// <summary>次のシーン名</summary>
         [SerializeField] private string nextSceneName = "MainScene";
@@ -21,10 +21,6 @@ namespace Select.Common
             new SelectTemplateResourcesAccessory();
         }
 
-        /// <summary>
-        /// シーンIDを取得
-        /// </summary>
-        /// <returns>シーンID</returns>
         public Dictionary<EnumSystemCommonCash, int> GetSystemCommonCash()
         {
             try
@@ -43,10 +39,6 @@ namespace Select.Common
             }
         }
 
-        /// <summary>
-        /// ステージクリア済みデータを取得
-        /// </summary>
-        /// <returns>ステージクリア済みデータ</returns>
         public Dictionary<EnumMainSceneStagesState, int>[] GetMainSceneStagesState()
         {
             try
@@ -65,11 +57,6 @@ namespace Select.Common
             }
         }
 
-        /// <summary>
-        /// シーンIDを更新
-        /// </summary>
-        /// <param name="configMap">シーン設定</param>
-        /// <returns>成功／失敗</returns>
         public bool SetSystemCommonCash(Dictionary<EnumSystemCommonCash, int> configMap)
         {
             try
@@ -87,20 +74,46 @@ namespace Select.Common
             }
         }
 
-        /// <summary>
-        /// タイトルシーンをロード
-        /// </summary>
         public void LoadTitleScene()
         {
             SceneManager.LoadScene(backSceneName);
         }
 
-        /// <summary>
-        /// メインシーンをロード
-        /// </summary>
         public void LoadMainScene()
         {
             SceneManager.LoadScene(nextSceneName);
         }
+    }
+
+    /// <summary>
+    /// シーンオーナー
+    /// インターフェース
+    /// </summary>
+    public interface ISceneOwner
+    {
+        /// <summary>
+        /// シーンIDを取得
+        /// </summary>
+        /// <returns>シーンID</returns>
+        public Dictionary<EnumSystemCommonCash, int> GetSystemCommonCash();
+        /// <summary>
+        /// ステージクリア済みデータを取得
+        /// </summary>
+        /// <returns>ステージクリア済みデータ</returns>
+        public Dictionary<EnumMainSceneStagesState, int>[] GetMainSceneStagesState();
+        /// <summary>
+        /// シーンIDを更新
+        /// </summary>
+        /// <param name="configMap">シーン設定</param>
+        /// <returns>成功／失敗</returns>
+        public bool SetSystemCommonCash(Dictionary<EnumSystemCommonCash, int> configMap);
+        /// <summary>
+        /// タイトルシーンをロード
+        /// </summary>
+        public void LoadTitleScene();
+        /// <summary>
+        /// メインシーンをロード
+        /// </summary>
+        public void LoadMainScene();
     }
 }

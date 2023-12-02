@@ -34,10 +34,6 @@ namespace Select.Model
                 return _index;
             }
         }
-        /// <summary>ボタン</summary>
-        private Button _button;
-        /// <summary>イベントトリガー</summary>
-        private EventTrigger _eventTrigger;
         /// <summary>ステージの状態</summary>
         private readonly IntReactiveProperty stageState = new IntReactiveProperty();
         /// <summary>ステージの状態</summary>

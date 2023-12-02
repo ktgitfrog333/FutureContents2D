@@ -19,7 +19,7 @@ namespace Title.Common
         public static readonly string SYSTEM_CONFIG = "SystemConfig";
         /// <summary>ステージクリア済みデータ</summary>
         public static readonly string MAIN_SCENE_STAGES_STATE = "MainSceneStagesState";
-        /// <summary>ステージクリア済みデータ（全ステージ解放）</summary>
-        public static readonly string MAIN_SCENE_STAGES_STATE_ALL = "MainSceneStagesStateAll";
+        /// <summary>＋で全ステージ解放</summary>
+        public static readonly string ALL = "All";
     }
 }
