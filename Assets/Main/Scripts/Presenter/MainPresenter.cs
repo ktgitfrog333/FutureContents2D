@@ -628,7 +628,12 @@ namespace Main.Presenter
                         safeZoneModel.IsTriggerExited.ObserveEveryValueChanged(x => x.Value)
                             .Subscribe(x =>
                             {
-                                if (x)
+                                if (x &&
+                                MainGameManager.Instance != null &&
+                                moveGuideView != null &&
+                                jumpGuideView != null &&
+                                playerModel != null &&
+                                fadeImageView != null)
                                 {
                                     MainGameManager.Instance.AudioOwner.PlaySFX(ClipToPlay.se_player_fall);
                                     // チュートリアルUIを開いていたら閉じる
@@ -642,9 +647,8 @@ namespace Main.Presenter
                                         Observable.FromCoroutine<bool>(observer => jumpGuideView.PlayFadeAnimation(observer, EnumFadeState.Close))
                                             .Subscribe(_ => jumpGuideView.gameObject.SetActive(false))
                                             .AddTo(gameObject);
-                                    if (playerModel != null)
-                                        if (!playerModel.SetInputBan(true))
-                                            Debug.LogError("操作禁止フラグ更新呼び出しの失敗");
+                                    if (!playerModel.SetInputBan(true))
+                                        Debug.LogError("操作禁止フラグ更新呼び出しの失敗");
                                     // T.B.D プレイヤーの挙動によって発生するイベント無効　など
                                     if (!MainGameManager.Instance.InputSystemsOwner.Exit())
                                         Debug.LogError("InputSystem終了呼び出しの失敗");
