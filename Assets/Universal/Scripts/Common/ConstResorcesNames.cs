@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace Title.Common
+namespace Universal.Common
 {
     /// <summary>
     /// リソースフォルダ内のファイル名
@@ -19,6 +19,8 @@ namespace Title.Common
         public static readonly string SYSTEM_CONFIG = "SystemConfig";
         /// <summary>ステージクリア済みデータ</summary>
         public static readonly string MAIN_SCENE_STAGES_STATE = "MainSceneStagesState";
+        /// <summary>ユーザーデータ</summary>
+        public static readonly string USER_DATA = "UserData";
         /// <summary>＋で全ステージ解放</summary>
         public static readonly string ALL = "All";
     }
