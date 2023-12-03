@@ -1,4 +1,6 @@
-using Select.Template;
+using Universal.Template;
+using Universal.Common;
+using Universal.Bean;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -18,19 +20,19 @@ namespace Select.Common
 
         public void OnStart()
         {
-            new SelectTemplateResourcesAccessory();
+            new TemplateResourcesAccessory();
         }
 
-        public Dictionary<EnumSystemCommonCash, int> GetSystemCommonCash()
+        public UserBean GetSaveDatas()
         {
             try
             {
-                var tSResources = new SelectTemplateResourcesAccessory();
-                var datas = tSResources.LoadSaveDatasCSV(ConstResorcesNames.SYSTEM_COMMON_CASH);
+                var temp = new TemplateResourcesAccessory();
+                var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
                 if (datas == null)
                     throw new System.Exception("リソース読み込みの失敗");
 
-                return tSResources.GetSystemCommonCash(datas);
+                return datas;
             }
             catch (System.Exception e)
             {
@@ -39,31 +41,13 @@ namespace Select.Common
             }
         }
 
-        public Dictionary<EnumMainSceneStagesState, int>[] GetMainSceneStagesState()
+        public bool SetSaveDatas(UserBean userBean)
         {
             try
             {
-                var tSResources = new SelectTemplateResourcesAccessory();
-                var datas = tSResources.LoadSaveDatasCSV(ConstResorcesNames.MAIN_SCENE_STAGES_STATE);
-                if (datas == null)
-                    throw new System.Exception("リソース読み込みの失敗");
-
-                return tSResources.GetMainSceneStagesState(datas);
-            }
-            catch (System.Exception e)
-            {
-                Debug.LogError(e);
-                return null;
-            }
-        }
-
-        public bool SetSystemCommonCash(Dictionary<EnumSystemCommonCash, int> configMap)
-        {
-            try
-            {
-                var tSResources = new SelectTemplateResourcesAccessory();
-                if (!tSResources.SaveDatasCSVOfSystemCommonCash(ConstResorcesNames.SYSTEM_COMMON_CASH, configMap))
-                    Debug.LogError("CSV保存呼び出しの失敗");
+                var temp = new TemplateResourcesAccessory();
+                if (!temp.SaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, userBean))
+                    throw new System.Exception("Json保存呼び出しの失敗");
 
                 return true;
             }
@@ -92,21 +76,16 @@ namespace Select.Common
     public interface ISceneOwner
     {
         /// <summary>
-        /// シーンIDを取得
+        /// ユーザーデータを取得
         /// </summary>
-        /// <returns>シーンID</returns>
-        public Dictionary<EnumSystemCommonCash, int> GetSystemCommonCash();
+        /// <returns>ユーザーデータ</returns>
+        public UserBean GetSaveDatas();
         /// <summary>
-        /// ステージクリア済みデータを取得
+        /// ユーザーデータを更新
         /// </summary>
-        /// <returns>ステージクリア済みデータ</returns>
-        public Dictionary<EnumMainSceneStagesState, int>[] GetMainSceneStagesState();
-        /// <summary>
-        /// シーンIDを更新
-        /// </summary>
-        /// <param name="configMap">シーン設定</param>
+        /// <param name="userBean">ユーザーデータ</param>
         /// <returns>成功／失敗</returns>
-        public bool SetSystemCommonCash(Dictionary<EnumSystemCommonCash, int> configMap);
+        public bool SetSaveDatas(UserBean userBean);
         /// <summary>
         /// タイトルシーンをロード
         /// </summary>

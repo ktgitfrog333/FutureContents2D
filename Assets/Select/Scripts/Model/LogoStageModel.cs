@@ -52,8 +52,8 @@ namespace Select.Model
         {
             try
             {
-                var mainSceneStagesState = SelectGameManager.Instance.SceneOwner.GetMainSceneStagesState();
-                stageState.Value = mainSceneStagesState[Index][EnumMainSceneStagesState.State];
+                var mainSceneStagesState = SelectGameManager.Instance.SceneOwner.GetSaveDatas();
+                stageState.Value = mainSceneStagesState.state[Index - 1];
                 // 未クリアの場合次のステージへナビゲーションしない
                 if (stageState.Value != 2)
                 {
