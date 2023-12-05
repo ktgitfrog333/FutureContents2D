@@ -236,8 +236,7 @@ namespace Main.Presenter
                     }
                 });
             // クリア画面表示のため、ゴール到達のフラグ更新
-            var currentStageDic = MainGameManager.Instance.SceneOwner.GetSystemCommonCash();
-            var mainSceneStagesState = MainGameManager.Instance.SceneOwner.GetMainSceneStagesState();
+            var datas = MainGameManager.Instance.SceneOwner.GetSaveDatas();
             var isGoalReached = new BoolReactiveProperty();
             isGoalReached.ObserveEveryValueChanged(x => x.Value)
                 .Subscribe(async x =>
@@ -246,11 +245,11 @@ namespace Main.Presenter
                     {
                         MainGameManager.Instance.AudioOwner.PlaySFX(ClipToPlay.me_game_clear);
                         // クリア済みデータの更新
-                        mainSceneStagesState[currentStageDic[EnumSystemCommonCash.SceneId]][EnumMainSceneStagesState.State] = 2;
-                        if (currentStageDic[EnumSystemCommonCash.SceneId] < mainSceneStagesState.Length - 1 &&
-                            mainSceneStagesState[(currentStageDic[EnumSystemCommonCash.SceneId] + 1)][EnumMainSceneStagesState.State] < 1)
-                            mainSceneStagesState[(currentStageDic[EnumSystemCommonCash.SceneId] + 1)][EnumMainSceneStagesState.State] = 1;
-                        if (!MainGameManager.Instance.SceneOwner.SaveMainSceneStagesState(mainSceneStagesState))
+                        datas.state[datas.sceneId - 1] = 2;
+                        if (datas.sceneId < datas.state.Length - 1 &&
+                            datas.state[(datas.sceneId)] < 1)
+                            datas.state[(datas.sceneId)] = 1;
+                        if (!MainGameManager.Instance.SceneOwner.SetSaveDatas(datas))
                             Debug.LogError("クリア済みデータ保存呼び出しの失敗");
                         // 初期処理
                         clearView.gameObject.SetActive(true);
@@ -313,7 +312,7 @@ namespace Main.Presenter
                             if (!MainGameManager.Instance.InputSystemsOwner.Exit())
                                 Debug.LogError("InputSystem終了呼び出しの失敗");
                             var owner = MainGameManager.Instance.SceneOwner;
-                            if (!owner.SetSystemCommonCash(owner.CountUpSceneId(currentStageDic)))
+                            if (!owner.SetSaveDatas(owner.CountUpSceneId(datas)))
                                 Debug.LogError("シーンID更新呼び出しの失敗");
                             // シーン読み込み時のアニメーション
                             Observable.FromCoroutine<bool>(observer => fadeImageView.PlayFadeAnimation(observer, EnumFadeState.Close))

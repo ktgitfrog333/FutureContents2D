@@ -464,7 +464,7 @@ namespace Title.Presenter
                 });
             // オプション機能
             var temp = new TemplateResourcesAccessory();
-            var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             var datasDefault = new UserBean(datas);
 
             // BGMスライダー
@@ -845,7 +845,7 @@ namespace Title.Presenter
                                 if (!TitleGameManager.Instance.AudioOwner.ReLoadAudios())
                                     Debug.LogError("オーディオ情報リロード呼び出しの失敗");
                                 // モデルへの反映
-                                datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+                                datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
                                 datasDefault = new UserBean(datas);
                                 if (!sliderBgmModel.SetIndex(datas.bgmVolumeIndex))
                                     Debug.LogError("インデックス番号をセット処理呼び出しの失敗");

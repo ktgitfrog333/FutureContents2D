@@ -32,7 +32,7 @@ namespace Title.Model
         {
             base.OnEnable();
             var tTResources = new TemplateResourcesAccessory();
-            var datas = tTResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = tTResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             _vibrationState.Value = datas.vibrationEnableIndex;
         }
 

@@ -1,4 +1,6 @@
-using Main.Template;
+using Universal.Template;
+using Universal.Common;
+using Universal.Bean;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -42,12 +44,11 @@ namespace Main.Common
                 }
             }
             // シーンIDを取得してステージをLevelオブジェクトの子要素としてインスタンスする
-            var tResourcesAccessory = new MainTemplateResourcesAccessory();
+            var temp = new TemplateResourcesAccessory();
             // ステージIDの取得
-            var sysComCashResources = tResourcesAccessory.LoadSaveDatasCSV(ConstResorcesNames.SYSTEM_COMMON_CASH);
-            var sysComCash = tResourcesAccessory.GetSystemCommonCash(sysComCashResources);
+            var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
 
-            _instancedLevel = Instantiate(levelPrefabs[sysComCash[EnumSystemCommonCash.SceneId]], Vector3.zero, Quaternion.identity, level).transform;
+            _instancedLevel = Instantiate(levelPrefabs[datas.sceneId], Vector3.zero, Quaternion.identity, level).transform;
             if (_instancedLevel != null)
                 _isInstanced.Value = true;
         }

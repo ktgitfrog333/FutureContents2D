@@ -4,7 +4,7 @@ using UnityEngine;
 using Main.Model;
 using Main.View;
 using UniRx;
-using Main.Template;
+using Universal.Template;
 using System.Linq;
 
 namespace Main.Common

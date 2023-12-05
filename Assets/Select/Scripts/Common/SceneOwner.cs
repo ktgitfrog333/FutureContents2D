@@ -28,7 +28,7 @@ namespace Select.Common
             try
             {
                 var temp = new TemplateResourcesAccessory();
-                var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+                var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
                 if (datas == null)
                     throw new System.Exception("リソース読み込みの失敗");
 

@@ -23,7 +23,7 @@ namespace Title.Audio
         public void OnStart()
         {
             var temp = new TemplateResourcesAccessory();
-            var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             if (!OutPutAudios(datas.bgmVolumeIndex, ConstAudioMixerGroupsNames.GROUP_NAME_BGM))
                 Debug.LogError($"{ConstAudioMixerGroupsNames.GROUP_NAME_BGM}設定呼び出しの失敗");
             if (!OutPutAudios(datas.seVolumeIndex, ConstAudioMixerGroupsNames.GROUP_NAME_SE))
@@ -53,7 +53,7 @@ namespace Title.Audio
             try
             {
                 var temp = new TemplateResourcesAccessory();
-                var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+                var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
                 if (!OutPutAudios(datas.bgmVolumeIndex, ConstAudioMixerGroupsNames.GROUP_NAME_BGM))
                     Debug.LogError($"{ConstAudioMixerGroupsNames.GROUP_NAME_BGM}設定呼び出しの失敗");
                 if (!OutPutAudios(datas.seVolumeIndex, ConstAudioMixerGroupsNames.GROUP_NAME_SE))

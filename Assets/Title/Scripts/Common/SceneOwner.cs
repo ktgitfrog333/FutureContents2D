@@ -30,8 +30,8 @@ namespace Title.Common
             try
             {
                 var temp = new TemplateResourcesAccessory();
-                var bean = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
-                var beanDefault = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
+                var bean = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
+                var beanDefault = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
                 var beanUpdate = temp.UpdateSceneStates(bean, beanDefault);
                 if (beanUpdate == null)
                     throw new System.Exception("シーン更新の失敗");
@@ -56,8 +56,8 @@ namespace Title.Common
             try
             {
                 var temp = new TemplateResourcesAccessory();
-                var bean = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
-                var beanAll = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.All);
+                var bean = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
+                var beanAll = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.All);
                 var beanUpdate = temp.UpdateSceneStates(bean, beanAll);
                 if (beanUpdate == null)
                     throw new System.Exception("シーン更新の失敗");

@@ -34,11 +34,17 @@ namespace Universal.Accessory
             {
                 Directory.CreateDirectory(GetHomePath());
             }
-            if (!File.Exists($"{GetHomePath()}{ConstResorcesNames.USER_DATA}.json"))
+            if (!File.Exists($"{GetHomePath()}{ConstResorcesNames.USER_DATA}{EXTENSION_JSON}"))
             {
-                using (File.Create($"{GetHomePath()}{ConstResorcesNames.USER_DATA}.json")) { }
+                using (File.Create($"{GetHomePath()}{ConstResorcesNames.USER_DATA}{EXTENSION_JSON}")) { }
                 if (!SaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, new UserBean(EnumLoadMode.Default)))
                     Debug.LogError("ユーザデータをJSONファイルへ保存の失敗");
+            }
+            if (!File.Exists($"{GetHomePath()}{ConstResorcesNames.ADMIN_DATA}{EXTENSION_JSON}"))
+            {
+                using (File.Create($"{GetHomePath()}{ConstResorcesNames.ADMIN_DATA}{EXTENSION_JSON}")) { }
+                if (!SaveDatasJsonOfAdminBean(ConstResorcesNames.ADMIN_DATA, new AdminBean()))
+                    Debug.LogError("管理者データをJSONファイルへ保存の失敗");
             }
         }
 
@@ -63,7 +69,7 @@ namespace Universal.Accessory
         /// <param name="resourcesLoadName">リソースJSONファイル名</param>
         /// <param name="enumLoadMode">ロードモード</param>
         /// <returns>ユーザー情報</returns>
-        public UserBean LoadSaveDatasJson(string resourcesLoadName, EnumLoadMode enumLoadMode=EnumLoadMode.Continue)
+        public UserBean LoadSaveDatasJsonOfUserBean(string resourcesLoadName, EnumLoadMode enumLoadMode=EnumLoadMode.Continue)
         {
             try
             {
@@ -89,6 +95,21 @@ namespace Universal.Accessory
             }
         }
 
+        public AdminBean LoadSaveDatasJsonOfAdminBean(string resourcesLoadName)
+        {
+            try
+            {
+                var path = GetHomePath();
+                using (var sr = new StreamReader($"{path}{resourcesLoadName}{EXTENSION_JSON}", Encoding.GetEncoding(ENCODING)))
+                    return new AdminBean(JsonUtility.FromJson<AdminBean>(sr.ReadToEnd()));
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+                return null;
+            }
+        }
+
         /// <summary>
         /// ユーザデータをJSONファイルへ保存
         /// </summary>
@@ -104,6 +125,27 @@ namespace Universal.Accessory
                 using (var sw = new StreamWriter($"{path}{resourcesLoadName}{EXTENSION_JSON}", false, Encoding.GetEncoding(ENCODING)))
                 {
                     var json = JsonUtility.ToJson(userBean);
+                    sw.WriteLine(json);
+                }
+
+                return true;
+            }
+            catch (System.Exception e)
+            {
+                Debug.LogError(e);
+                return false;
+            }
+        }
+
+        public bool SaveDatasJsonOfAdminBean(string resourcesLoadName, AdminBean adminBean)
+        {
+            try
+            {
+                var path = GetHomePath();
+                // 設定内容を保存
+                using (var sw = new StreamWriter($"{path}{resourcesLoadName}{EXTENSION_JSON}", false, Encoding.GetEncoding(ENCODING)))
+                {
+                    var json = JsonUtility.ToJson(adminBean);
                     sw.WriteLine(json);
                 }
 

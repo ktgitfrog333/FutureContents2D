@@ -8,7 +8,6 @@ namespace Universal.Bean
     [System.Serializable]
     /// <summary>
     /// ユーザー情報を保持するクラス
-    /// T.B.D 管理データから配列数を管理
     /// </summary>
     public class UserBean
     {
@@ -22,10 +21,6 @@ namespace Universal.Bean
         /// </summary>
         private readonly int SCENEID_ALL = 1;
         
-        /// <summary>
-        /// クリアステータスの長さ
-        /// </summary>
-        private readonly static int STATELENGTH = 15;
         
         /// <summary>
         /// デフォルトのクリアステータス
@@ -45,7 +40,7 @@ namespace Universal.Bean
         /// <summary>
         /// クリアステータス
         /// </summary>
-        public int[] state = new int[STATELENGTH];
+        public int[] state = new int[ConstBeanRules.STATELENGTH];
         
         /// <summary>
         /// オーディオボリュームインデックス

@@ -26,7 +26,7 @@ namespace Title.Test
             TitleGameManager.Instance.AudioOwner.PlayBGM(ClipToPlayBGM.bgm_title);
             //slider.onValueChanged.AddListener(SetAudioMixer);
             var tTResources = new TemplateResourcesAccessory();
-            bean = tTResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            bean = tTResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
         }
 
         public void SetAudioMixer(float value)

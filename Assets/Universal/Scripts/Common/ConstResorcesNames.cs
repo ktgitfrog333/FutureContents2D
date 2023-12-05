@@ -21,6 +21,8 @@ namespace Universal.Common
         public static readonly string MAIN_SCENE_STAGES_STATE = "MainSceneStagesState";
         /// <summary>ユーザーデータ</summary>
         public static readonly string USER_DATA = "UserData";
+        /// <summary>管理者データ</summary>
+        public static readonly string ADMIN_DATA = "AdminData";
         /// <summary>＋で全ステージ解放</summary>
         public static readonly string ALL = "All";
     }

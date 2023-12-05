@@ -32,7 +32,7 @@ namespace Select.Test
             Debug.Log("---OnClicked---");
             var tSResources = new TemplateResourcesAccessory();
             Debug.Log("---LoadResourcesCSV---");
-            var datas = tSResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = tSResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             if (datas == null)
                 throw new System.Exception("リソース読み込みの失敗");
             // for (var i = 0; i < datas.Count; i++)

@@ -30,7 +30,7 @@ namespace Title.View
         private void OnEnable()
         {
             var temp = new TemplateResourcesAccessory();
-            var datas = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             var color = new Color(image.color.r, image.color.g, image.color.b, datas.vibrationEnableIndex == (int)EnumVibrationEnableState.ON ? 1f : 0f);
             image.color = color;
         }

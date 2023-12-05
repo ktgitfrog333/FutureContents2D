@@ -26,9 +26,14 @@ namespace Universal.Template
         /// </summary>
         /// <param name="resourcesLoadName">リソースJSONファイル名</param>
         /// <returns>ユーザー情報</returns>
-        public UserBean LoadSaveDatasJson(string resourcesLoadName, EnumLoadMode enumLoadMode=EnumLoadMode.Continue)
+        public UserBean LoadSaveDatasJsonOfUserBean(string resourcesLoadName, EnumLoadMode enumLoadMode=EnumLoadMode.Continue)
         {
-            return new ResourcesAccessory().LoadSaveDatasJson(resourcesLoadName, enumLoadMode);
+            return new ResourcesAccessory().LoadSaveDatasJsonOfUserBean(resourcesLoadName, enumLoadMode);
+        }
+
+        public AdminBean LoadSaveDatasJsonOfAdminBean(string resourcesLoadName)
+        {
+            return new ResourcesAccessory().LoadSaveDatasJsonOfAdminBean(resourcesLoadName);
         }
 
         /// <summary>
@@ -37,6 +42,11 @@ namespace Universal.Template
         public bool SaveDatasJsonOfUserBean(string resourcesLoadName, UserBean userBean)
         {
             return new ResourcesAccessory().SaveDatasJsonOfUserBean(resourcesLoadName, userBean);
+        }
+
+        public bool SaveDatasJsonOfAdminBean(string resourcesLoadName, AdminBean adminBean)
+        {
+            return new ResourcesAccessory().SaveDatasJsonOfAdminBean(resourcesLoadName, adminBean);
         }
 
         /// <summary>

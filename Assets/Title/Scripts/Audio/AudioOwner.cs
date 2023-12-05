@@ -81,8 +81,8 @@ namespace Title.Audio
             try
             {
                 var temp = new TemplateResourcesAccessory();
-                var bean = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
-                var beanDefault = temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
+                var bean = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
+                var beanDefault = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
                 var beanUpdate = temp.UpdateAudioAndVibration(bean, beanDefault);
                 if (beanUpdate == null)
                     throw new System.Exception("システム設定データ更新の失敗");

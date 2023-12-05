@@ -70,7 +70,7 @@ namespace Title.Test
             var temp = new TemplateResourcesAccessory();
             var bean = new UserBean();
             bean.sceneId = 2;
-            Debug.Log(temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA).sceneId == bean.sceneId ? "OK" : "NG");
+            Debug.Log(temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA).sceneId == bean.sceneId ? "OK" : "NG");
         }
 
         private void TestCase_6()
@@ -78,7 +78,7 @@ namespace Title.Test
             var temp = new TemplateResourcesAccessory();
             var bean = new UserBean();
             bean.sceneId = 1;
-            Debug.Log(temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.Default).sceneId == bean.sceneId ? "OK" : "NG");
+            Debug.Log(temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.Default).sceneId == bean.sceneId ? "OK" : "NG");
         }
 
         private void TestCase_7()
@@ -86,7 +86,7 @@ namespace Title.Test
             var temp = new TemplateResourcesAccessory();
             var bean = new UserBean();
             bean.sceneId = 1;
-            Debug.Log(temp.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.All).sceneId == bean.sceneId ? "OK" : "NG");
+            Debug.Log(temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.All).sceneId == bean.sceneId ? "OK" : "NG");
         }
 
         private void TestCase_0()
@@ -94,7 +94,7 @@ namespace Title.Test
             Debug.Log("---OnClicked---");
             var tTResources = new TemplateResourcesAccessory();
             Debug.Log("---LoadResourcesCSV---");
-            var datas = tTResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
+            var datas = tTResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
             if (datas == null)
                 throw new System.Exception("リソース読み込みの失敗");
             Debug.Log(datas.audioVolumeIndex);
@@ -117,7 +117,7 @@ namespace Title.Test
             Debug.Log("---OnClicked---");
             var tTResources = new TemplateResourcesAccessory();
             Debug.Log("---LoadSaveDatasCSV---");
-            var datas = tTResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = tTResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             if (datas == null)
                 throw new System.Exception("リソース読み込みの失敗");
             for (var i = 0; i < datas.state.Length; i++)
@@ -136,7 +136,7 @@ namespace Title.Test
             Debug.Log("---OnClicked---");
             var tTResources = new TemplateResourcesAccessory();
             Debug.Log("---LoadResourcesCSV---");
-            var datas = tTResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
+            var datas = tTResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, EnumLoadMode.Default);
             Debug.Log("---SaveDatasCSVOfMainSceneStagesCleared---");
             if (!tTResources.SaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA, datas))
                 Debug.LogError("CSV保存呼び出しの失敗");
@@ -147,7 +147,7 @@ namespace Title.Test
             Debug.Log("---OnClicked---");
             var tSResources = new TemplateResourcesAccessory();
             Debug.Log("---LoadResourcesCSV---");
-            var datas = tSResources.LoadSaveDatasJson(ConstResorcesNames.USER_DATA);
+            var datas = tSResources.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             if (datas == null)
                 throw new System.Exception("リソース読み込みの失敗");
             Debug.Log("---SaveResourcesCSVOfSystemCommonCash---");

@@ -1,7 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Main.Template;
+using Universal.Template;
+using Universal.Common;
 using Main.Common;
 
 namespace Main.Audio
@@ -30,14 +31,12 @@ namespace Main.Audio
 
         public void OnStartAndPlayBGM()
         {
-            var tResourcesAccessory = new MainTemplateResourcesAccessory();
+            var temp = new TemplateResourcesAccessory();
             // ステージIDの取得
-            var sysComCashResources = tResourcesAccessory.LoadSaveDatasCSV(ConstResorcesNames.SYSTEM_COMMON_CASH);
-            var sysComCash = tResourcesAccessory.GetSystemCommonCash(sysComCashResources);
+            var userDatas = temp.LoadSaveDatasJsonOfUserBean(ConstResorcesNames.USER_DATA);
             // ステージ共通設定の取得
-            var mainSceneStagesConfResources = tResourcesAccessory.LoadSaveDatasCSV(ConstResorcesNames.MAIN_SCENE_STAGES_CONFIG);
-            var mainSceneStagesConfs = tResourcesAccessory.GetMainSceneStagesConfig(mainSceneStagesConfResources);
-            var clipToPlay = mainSceneStagesConfs[sysComCash[EnumSystemCommonCash.SceneId]][EnumMainSceneStagesConfig.PlayBgmNames];
+            var adminDatas = temp.LoadSaveDatasJsonOfAdminBean(ConstResorcesNames.ADMIN_DATA);
+            var clipToPlay = adminDatas.playBgmNames[userDatas.sceneId - 1] - 1;
 
             PlayAudioSource((ClipToPlayBGM)clipToPlay);
         }
